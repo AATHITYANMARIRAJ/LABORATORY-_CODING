@@ -8,99 +8,83 @@ of books having the same price.
 
 #include <iostream>
 using namespace std;
-#include <string>
 class Book{
-	private:
-	   int id;
-	   string author_name;
-	   string publisher_name;
-	   int price;
-	   int year;
-	   
+      private:
+	     int id;
+		 char author_name[50];
+		 char publisher_name[50];
+		 int price;
+		 int year;
+
 	public:
-		void set(){
-			cout<<"enter the id\n";
-			cin>>id;
-			
-			cout<<"enter the author name\n";
-			cin>>author_name;
-			
-			cout<<"enter the publisher name\n";
-			cin>>publisher_name;
-			
-			cout<<"enter the price\n";
-			cin>>price;
-			
-			cout<<"enter the year\n";
-			cin>>year;
-			
-		}
+	   void set(){
+		cout<<"enter the id of the book\n";
+		cin>>id;
+
+        cin.ignore();
+		cout<<"enter the author name\n";
+		cin>>author_name;
 		
-		void display(){
-			cout<<"the id is "<<id;
-			cout<<"the author_name is "<<author_name<<"\n";
-			cout<<"the publisher_name is "<<publisher_name<<"\n";
-			cout<<"the price is "<<price<<"\n";
-			cout<<"the year is "<<year<<"\n";
-		}
+		cout<<"enter the publisher name\n";
+		cin>>publisher_name;
 		
-		int get_id(){
-		   return id;
-		}
-		int get_price(){
-			return price;
-		}
+		cout<<"enter price:\n";
+		cin>>price;
+
+		cout<<"enter the year:\n";
+		cin>>year;
+
+	   }
+
+	 void display(){
+		cout<<"The id is"<<id<<"\n";
+		cout<<"the author name is"<<author_name<<"\n";
+		cout<<"the publisher name is"<<publisher_name<<"\n";
+		cout<<"the price is"<<price<<"\n";
+		cout<<"the year is"<<year<<"\n";
+		
+	 }  
+    
+	int get_price(){
+		return price;
+	}
 };
 
 int main(){
-	Book b[100];
+	
+    Book a[100];
 	int n;
-	cout<<"enter for how many books you want to enter the detail\n";
+	cout<<"enter for how many book you want to enter the detail\n";
 	cin>>n;
 	for(int i=0;i<n;i++){
-		b[i].set();
+		a[i].set();
 	}
-	 
-	for(int i=0;i<n;i++){
-		b[i].display();
-	}
-	
-	
-	int price[100];
-	
-	for(int i=0;i<n;i++){
-	   price[i]=b[i].get_price();
-	}
-	int n1=n;
-	//removing duplicate elements
-	 for ( int i = 0; i < n; i ++)  
-    {  
-        for ( int j = i + 1; j < n; j++)  
-        {  
-            // use if statement to check duplicate element  
-            if ( price[i] == price[j])  
-            {  
-                // delete the current position of the duplicate element  
-                for ( int k = j; k < n- 1; k++)  
-                {  
-                    price[k] = price[k + 1];  
-                }  
-                // decrease the size of array after removing duplicate element  
-                n--;
-		}
-	}
-}
 
-for(int i=0;i<n;i++){
-	int count=0;
-	for(int j=0;j<n1;j++){
-		if(b[j].get_price()==price[i]){
-			count++;
+    for(int i=0;i<n;i++){
+		a[i].display();
+	}
+    
+	int sal[100];
+
+    for(int i=0;i<n;i++){
+		int a1=a[i].get_price();
+        sal[i]=a1;
+	}
+
+   for(int i=0;i<n;i++){
+	  int count=1;
+	for(int j=i+1;j<n;j++){
+		if(sal[i]==sal[j]){
+             count++;
+			 a[j]=a[j+1];
+	         n--;
 		}
 	}
-	cout<<"the book with price "<<price[i]<<" has "<<count<<" copies.\n";
-}
-	
+	cout<<"the book with price "<<sal[i]<<" have "<<count<<" copies";
+   }
+    
 	return 0;
 }
+
+
 
